@@ -722,13 +722,13 @@ main_installation() {
 
         log_info "Checking snapshot requirements..."
         local snapshot_size=$(curl -sI "$SNAPSHOT_URL" | grep -i 'content-length' | awk '{print $2}' | tr -d '\r')
-        local estimated_size_gb=130
+        local estimated_size_gb=170
 
         if [[ -n "$snapshot_size" ]]; then
             estimated_size_gb=$((snapshot_size / 1024 / 1024 / 1024))
             log_info "Snapshot size: ${estimated_size_gb}GB (compressed)"
         else
-            log_warn "Could not determine snapshot size, using estimate: 130GB"
+            log_warn "Could not determine snapshot size, using estimate: 170GB"
         fi
 
         local total_required=$((estimated_size_gb + estimated_size_gb + 10))
